@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6b1834"><meta name="description" content="Coloca imágenes de firma en archivos PDF directamente desde tu navegador.">
+  <title>Firma Digital Pro</title><link rel="stylesheet" href="assets/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+<header class="top"><div class="brand-mark">FD</div><div><h1>Firma Digital Pro</h1><p>Coloca firmas en tus documentos PDF</p></div><span class="privacy">Procesamiento local</span></header>
+<main class="container">
+  <section class="intro"><div><span class="eyebrow">HERRAMIENTA PDF</span><h2>Firma tus documentos<br><em>de forma sencilla</em></h2><p>Carga tus PDF e imágenes PNG, coloca cada firma en la vista previa y descarga los documentos procesados en un ZIP.</p></div><div class="step-list"><div><b>1</b> Carga archivos</div><div><b>2</b> Coloca firmas</div><div><b>3</b> Descarga ZIP</div></div></section>
+  <section class="panel upload-panel"><div class="panel-title"><span class="number">01</span><div><h3>Selecciona tus archivos</h3><p>Los archivos se procesan en tu navegador; no se envían a un servidor.</p></div></div>
+    <div class="upload-grid">
+      <label class="dropzone" for="pdfFiles"><span class="file-icon">PDF</span><strong>Documentos PDF</strong><span>Selecciona uno o varios archivos</span><small>Solo archivos .pdf</small><input id="pdfFiles" type="file" accept="application/pdf,.pdf" multiple></label>
+      <label class="dropzone" for="sigFiles"><span class="file-icon image-icon">PNG</span><strong>Imágenes de firma</strong><span>Hasta 5 imágenes de firma</span><small>Fondo transparente recomendado</small><input id="sigFiles" type="file" accept="image/png,.png" multiple></label>
+    </div>
+    <div id="fileSummary" class="file-summary" aria-live="polite">Selecciona archivos PDF y al menos una firma PNG para continuar.</div>
+    <div class="actions"><button id="startBtn" class="primary" disabled>Continuar a la vista previa →</button></div>
+  </section>
+  <section id="editor" class="panel editor-panel hidden">
+    <div class="panel-title"><span class="number">02</span><div><h3>Coloca las firmas</h3><p>Arrastra cada firma sobre el documento. La posición se aplicará a la primera página de cada PDF.</p></div></div>
+    <div class="editor-layout"><aside class="sidebar"><h4>Firmas disponibles</h4><p class="muted">Selecciona una firma y arrástrala al documento. Puedes moverla después.</p><div id="signatureList" class="signature-list"></div><div class="control"><label for="sizeRange">Tamaño de firma <output id="sizeValue">100%</output></label><input id="sizeRange" type="range" min="40" max="200" value="100"></div><div class="control"><label for="pdfSelect">Vista previa del PDF</label><select id="pdfSelect"></select></div><button id="clearBtn" class="secondary full">Quitar todas las firmas colocadas</button></aside>
+      <div class="canvas-area"><div class="canvas-toolbar"><span id="pageInfo">Vista previa de la primera página</span><span id="placementCount">0 firmas colocadas</span></div><div id="paper" class="paper"><canvas id="pdfCanvas"></canvas><div id="overlay" class="overlay"></div></div><p class="hint">Consejo: toca o haz clic en una firma de la lista y después haz clic en el documento para colocarla; también puedes arrastrarla.</p></div></div>
+    <div class="actions editor-actions"><button id="backBtn" class="secondary">← Cambiar archivos</button><button id="processBtn" class="primary">Procesar y descargar ZIP</button></div>
+    <div id="status" class="status" role="status"></div>
+  </section>
+  <footer><strong>Importante:</strong> esta herramienta inserta imágenes de firma en la primera página de cada PDF. No verifica la identidad del firmante ni crea una firma electrónica certificada. Conserva siempre una copia original de tus documentos.</footer>
+</main>
+<script src="assets/app.js"></script>
+</body></html>
